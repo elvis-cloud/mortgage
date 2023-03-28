@@ -6,5 +6,22 @@ Set database credentials as env variables on the app server
 Database must contain a table called users with the following columns; 
 id, name, email, phone, yearly_income, expenses, loans, dependents, marital_status, years_of_employment
 
+Connect using Workbench and run the following queries
+create database MortgageApp
+use MortgageApp
+CREATE TABLE users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(50) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  phone VARCHAR(20) NOT NULL,
+  yearly_income DECIMAL(10,2) NOT NULL,
+  expenses DECIMAL(10,2) NOT NULL,
+  loans DECIMAL(10,2) NOT NULL,
+  dependents INT NOT NULL,
+  marital_status VARCHAR(20) NOT NULL,
+  years_of_employment INT NOT NULL
+);
+
+
 Install a MySQL connector on the instance: sudo yum install mysql-connector-java
 
