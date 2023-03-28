@@ -1,7 +1,7 @@
 Set database credentials as env variables on the app server
-- String url = "jdbc:mysql://<RDS endpoint>/<database>";
-- String user = "<username>";
-- String password = "<password>";
+- String DB_URL = "jdbc:mysql://<RDS endpoint>/<database>";
+- String DB_USERNAME = "<username>";
+- String DB_PASSWORD = "<password>";
 
 Install a MySQL connector on the instance: sudo yum install mysql-connector-java
 
