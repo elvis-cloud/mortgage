@@ -57,8 +57,8 @@ public class UserDAO {
                 user.setEmail(rs.getString("email"));
                 user.setPhone(rs.getString("phone"));
                 user.setIncome(rs.getDouble("yearly_income"));
-                user.setExpenses(rs.getInt("expenses"));
-                user.setLoans(rs.getInt("loans"));
+                user.setExpenses(rs.getDouble("expenses"));
+                user.setLoans(rs.getDouble("loans"));
                 user.setDependents(rs.getInt("dependents"));
                 user.setMaritalStatus(rs.getString("marital_status"));
                 user.setYearsOfEmployment(rs.getInt("years_of_employment"));

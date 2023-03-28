@@ -6,8 +6,8 @@ public class User {
     private String email;
     private String phone;
     private double income;
-    private int expenses;
-    private int loans;
+    private double expenses;
+    private double loans;
     private int dependents;
     private String maritalStatus;
     private int yearsOfEmployment;
@@ -15,7 +15,7 @@ public class User {
     public User (){
     }
 
-    public User(int id, String name, String email, String phone, double income, int expenses, int loans, int dependents, String maritalStatus, int yearsOfEmployment) {
+    public User(int id, String name, String email, String phone, double income, double expenses, double loans, int dependents, String maritalStatus, int yearsOfEmployment) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -68,19 +68,19 @@ public class User {
         this.income = income;
     }
 
-    public int getExpenses() {
+    public double getExpenses() {
         return expenses;
     }
 
-    public void setExpenses(int expenses) {
+    public void setExpenses(double expenses) {
         this.expenses = expenses;
     }
 
-    public int getLoans() {
+    public double getLoans() {
         return loans;
     }
 
-    public void setLoans(int loans) {
+    public void setLoans(double loans) {
         this.loans = loans;
     }
 
