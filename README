@@ -3,5 +3,8 @@ Set database credentials as env variables on the app server
 - String DB_USERNAME = "<username>";
 - String DB_PASSWORD = "<password>";
 
+Database must contain a table called users with the following columns; 
+id, name, email, phone, yearly_income, expenses, loans, dependents, marital_status, years_of_employment
+
 Install a MySQL connector on the instance: sudo yum install mysql-connector-java
 
