@@ -11,15 +11,21 @@
 	<form action="submit.jsp" method="post">
 		<label for="name">Name:</label>
 		<input type="text" name="name" required><br><br>
+
+		<label for="email">Email:</label>
+		<input type="text" name="email" required><br><br>
+
+		<label for="phone">Phone:</label>
+		<input type="text" name="phone" required><br><br>
 		
-		<label for="yearlyIncome">Yearly Income:</label>
-		<input type="number" name="yearlyIncome" required><br><br>
+		<label for="income">Yearly Income:</label>
+		<input type="text" name="income" required><br><br>
 		
 		<label for="expenses">Expenses:</label>
 		<input type="number" name="expenses" required><br><br>
 		
-		<label for="otherLoans">Other Loans:</label>
-		<input type="number" name="otherLoans" required><br><br>
+		<label for="loans">Other Loans:</label>
+		<input type="number" name="loans" required><br><br>
 		
 		<label for="dependents">Dependents:</label>
 		<input type="number" name="dependents" required><br><br>

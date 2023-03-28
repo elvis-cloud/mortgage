@@ -1,4 +1,4 @@
-<%@page import="java.util.ArrayList"%>
+<%@ page import="java.util.List" %>
 <%@page import="com.barclays.mortgage.User"%>
 <%@page import="com.barclays.mortgage.UserDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -22,6 +22,7 @@
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Phone</th>
             <th>Income</th>
             <th>Expenses</th>
             <th>Loans</th>
@@ -31,13 +32,14 @@
         </tr>
         <% 
             UserDAO userDAO = new UserDAO();
-            ArrayList<User> users = userDAO.getAllUsers();
+            List<User> users = userDAO.getAllUsers();
             for (User user : users) {
         %>
         <tr>
             <td><%= user.getId() %></td>
             <td><%= user.getName() %></td>
             <td><%= user.getEmail() %></td>
+            <td><%= user.getPhone() %></td>
             <td><%= user.getIncome() %></td>
             <td><%= user.getExpenses() %></td>
             <td><%= user.getLoans() %></td>

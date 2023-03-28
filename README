@@ -14,17 +14,17 @@ CREATE TABLE users (
   name VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL,
   phone VARCHAR(20) NOT NULL,
-  yearly_income DECIMAL(10,2) NOT NULL,
+  income DECIMAL(10,2) NOT NULL,
   expenses DECIMAL(10,2) NOT NULL,
   loans DECIMAL(10,2) NOT NULL,
   dependents INT NOT NULL,
-  marital_status VARCHAR(20) NOT NULL,
-  years_of_employment INT NOT NULL
+  maritalStatus VARCHAR(20) NOT NULL,
+  yearsOfEmployment INT NOT NULL
 );
 
 
-Install a MySQL connector on the instance: sudo yum install mysql-connector-java
 
-export DB_URL=jdbc:mysql://barclays-mortgage.c28mbcwwxqnf.ca-central-1.rds.amazonaws.com/MortgageApp
-export DB_USERNAME=admin
-export DB_PASSWORD=Acca2560@
+
+export DB_URL=
+export DB_USERNAME=
+export DB_PASSWORD=

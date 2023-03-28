@@ -28,7 +28,7 @@ public class UserDAO {
     // Add user to database
     public void addUser(User user) {
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into users(name, email, phone, yearly_income, expenses, other_loans, dependents, marital_status, years_of_employment) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into users(name, email, phone, yincome, expenses, loans, dependents, maritalStatus, yearsOfEmployment) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getEmail());
             preparedStatement.setString(3, user.getPhone());
@@ -56,12 +56,12 @@ public class UserDAO {
                 user.setName(rs.getString("name"));
                 user.setEmail(rs.getString("email"));
                 user.setPhone(rs.getString("phone"));
-                user.setIncome(rs.getDouble("yearly_income"));
+                user.setIncome(rs.getDouble("income"));
                 user.setExpenses(rs.getDouble("expenses"));
                 user.setLoans(rs.getDouble("loans"));
                 user.setDependents(rs.getInt("dependents"));
-                user.setMaritalStatus(rs.getString("marital_status"));
-                user.setYearsOfEmployment(rs.getInt("years_of_employment"));
+                user.setMaritalStatus(rs.getString("maritalStatus"));
+                user.setYearsOfEmployment(rs.getInt("yearsOfEmployment"));
                 users.add(user);
             }
         } catch (SQLException e) {

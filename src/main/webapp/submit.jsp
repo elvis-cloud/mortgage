@@ -3,14 +3,16 @@
 <%@ page import="com.barclays.mortgage.User,com.barclays.mortgage.UserDAO" %>
 <%
     String name = request.getParameter("name");
-    double yearlyIncome = Double.parseDouble(request.getParameter("yearlyIncome"));
+    String email = request.getParameter("email");
+    String phone = request.getParameter("phone");
+    double income = Double.parseDouble(request.getParameter("income"));
     double expenses = Double.parseDouble(request.getParameter("expenses"));
-    double otherLoans = Double.parseDouble(request.getParameter("otherLoans"));
+    double loans = Double.parseDouble(request.getParameter("loans"));
     int dependents = Integer.parseInt(request.getParameter("dependents"));
     String maritalStatus = request.getParameter("maritalStatus");
     int yearsOfEmployment = Integer.parseInt(request.getParameter("yearsOfEmployment"));
     
-    User user = new User(name, yearlyIncome, expenses, otherLoans, dependents, maritalStatus, yearsOfEmployment);
+    User user = new User(name, email, phone, income, expenses, loans, dependents, maritalStatus, yearsOfEmployment);
     UserDAO userDao = new UserDAO();
     userDao.addUser(user);
 %>
