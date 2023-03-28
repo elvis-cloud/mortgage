@@ -31,7 +31,7 @@
         </tr>
         <% 
             UserDAO userDAO = new UserDAO();
-            ArrayList<User> users = userDAO.getAll();
+            ArrayList<User> users = userDAO.getAllUsers();
             for (User user : users) {
         %>
         <tr>

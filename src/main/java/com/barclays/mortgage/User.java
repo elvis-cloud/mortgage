@@ -15,6 +15,18 @@ public class User {
     public User (){
     }
 
+    public User(String name, String email, String phone, double income, double expenses, double loans, int dependents, String maritalStatus, int yearsOfEmployment) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.income = income;
+        this.expenses = expenses;
+        this.loans = loans;
+        this.dependents = dependents;
+        this.maritalStatus = maritalStatus;
+        this.yearsOfEmployment = yearsOfEmployment;
+    }
+
     public User(int id, String name, String email, String phone, double income, double expenses, double loans, int dependents, String maritalStatus, int yearsOfEmployment) {
         this.id = id;
         this.name = name;
