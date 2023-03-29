@@ -1,5 +1,5 @@
 Set database credentials as env variables on the app server
-- String DB_URL = "jdbc:mysql://<RDS endpoint>/<database>";
+- String DB_URL = "jdbc:mysql://<RDS endpoint>:port/<database>";
 - String DB_USERNAME = "<username>";
 - String DB_PASSWORD = "<password>";
 
@@ -7,16 +7,16 @@ Database must contain a table called users with the following columns;
 id, name, email, phone, yearly_income, expenses, loans, dependents, marital_status, years_of_employment
 
 Connect using Workbench and run the following queries
-create database MortgageApp
-use MortgageApp
+create database barclays
+use barclays
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(50) NOT NULL,
   email VARCHAR(50) NOT NULL,
   phone VARCHAR(20) NOT NULL,
-  income DECIMAL(10,2) NOT NULL,
-  expenses DECIMAL(10,2) NOT NULL,
-  loans DECIMAL(10,2) NOT NULL,
+  income DOUBLE NOT NULL,
+  expenses DOUBLE NOT NULL,
+  loans DOUBLE NOT NULL,
   dependents INT NOT NULL,
   maritalStatus VARCHAR(20) NOT NULL,
   yearsOfEmployment INT NOT NULL
@@ -25,6 +25,6 @@ CREATE TABLE users (
 
 
 
-export DB_URL=
-export DB_USERNAME=
-export DB_PASSWORD=
+export DB_URL=jdbc:mysql://mortgageapp.c28mbcwwxqnf.ca-central-1.rds.amazonaws.com:3306/barclays
+export DB_USERNAME=admin
+export DB_PASSWORD=Acca2560

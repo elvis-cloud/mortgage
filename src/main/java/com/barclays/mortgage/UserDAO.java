@@ -1,73 +1,77 @@
 package com.barclays.mortgage;
+
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 public class UserDAO {
-    private Connection connection;
+    private DataSource dataSource;
 
     public UserDAO() {
-        String url = System.getenv("DB_URL");
-        String username = System.getenv("DB_USERNAME");
-        String password = System.getenv("DB_PASSWORD");
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(url, username, password);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            Context initContext = new InitialContext();
+            Context envContext = (Context) initContext.lookup("java:/comp/env");
+            dataSource = (DataSource) envContext.lookup("jdbc/MortgageDB");
+        } catch (NamingException e) {
+            throw new RuntimeException("Unable to initialize data source", e);
         }
     }
 
-    // Add user to database
     public void addUser(User user) {
-        try {
-            PreparedStatement preparedStatement = connection.prepareStatement("insert into users(name, email, phone, yincome, expenses, loans, dependents, maritalStatus, yearsOfEmployment) values (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getEmail());
-            preparedStatement.setString(3, user.getPhone());
-            preparedStatement.setDouble(4, user.getIncome());
-            preparedStatement.setDouble(5, user.getExpenses());
-            preparedStatement.setDouble(6, user.getLoans());
-            preparedStatement.setInt(7, user.getDependents());
-            preparedStatement.setString(8, user.getMaritalStatus());
-            preparedStatement.setInt(9, user.getYearsOfEmployment());
-            preparedStatement.executeUpdate();
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("INSERT INTO users (name, email, phone, income, expenses, loans, dependents, marital_status, years_of_employment) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)")) {
+            stmt.setString(1, user.getName());
+            stmt.setString(2, user.getEmail());
+            stmt.setString(3, user.getPhone());
+            stmt.setDouble(4, user.getIncome());
+            stmt.setDouble(5, user.getExpenses());
+            stmt.setDouble(6, user.getLoans());
+            stmt.setInt(7, user.getDependents());
+            stmt.setString(8, user.getMaritalStatus());
+            stmt.setInt(9, user.getYearsOfEmployment());
+            stmt.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Unable to add user", e);
         }
     }
 
-    // Get all users from database
     public List<User> getAllUsers() {
-        List<User> users = new ArrayList<User>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from users");
+        List<User> users = new ArrayList<>();
+        try (Connection conn = dataSource.getConnection();
+             PreparedStatement stmt = conn.prepareStatement("SELECT * FROM users");
+             ResultSet rs = stmt.executeQuery()) {
             while (rs.next()) {
-                User user = new User();
-                user.setId(rs.getInt("id"));
-                user.setName(rs.getString("name"));
-                user.setEmail(rs.getString("email"));
-                user.setPhone(rs.getString("phone"));
-                user.setIncome(rs.getDouble("income"));
-                user.setExpenses(rs.getDouble("expenses"));
-                user.setLoans(rs.getDouble("loans"));
-                user.setDependents(rs.getInt("dependents"));
-                user.setMaritalStatus(rs.getString("maritalStatus"));
-                user.setYearsOfEmployment(rs.getInt("yearsOfEmployment"));
+                User user = new User(rs.getInt("id"),
+                                     rs.getString("name"),
+                                     rs.getString("email"),
+                                     rs.getString("phone"),
+                                     rs.getDouble("income"),
+                                     rs.getDouble("expenses"),
+                                     rs.getDouble("loans"),
+                                     rs.getInt("dependents"),
+                                     rs.getString("marital_status"),
+                                     rs.getInt("years_of_employment"));
                 users.add(user);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Unable to retrieve users", e);
         }
         return users;
     }
-}
 
+    public void close() {
+        try {
+            dataSource.getConnection().close();
+        } catch (SQLException e) {
+            throw new RuntimeException("Unable to close data source", e);
+        }
+    }
+}

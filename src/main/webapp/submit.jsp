@@ -15,6 +15,7 @@
     User user = new User(name, email, phone, income, expenses, loans, dependents, maritalStatus, yearsOfEmployment);
     UserDAO userDao = new UserDAO();
     userDao.addUser(user);
+    userDao.close();
 %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +27,4 @@
 	<h1>Thank You</h1>
 	<p>A mortgage specialist will be in contact with you shortly.</p>
 	<br><br>
-	<a href="index.jsp">Go Back to Home Page</a>
-</body>
-</html>
+	<a href="index.jsp

@@ -8,10 +8,23 @@
     <meta charset="UTF-8">
     <title>User Table</title>
     <style>
-        table, th, td {
-          border: 1px solid black;
-          border-collapse: collapse;
-          padding: 5px;
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
     </style>
 </head>
@@ -33,6 +46,7 @@
         <% 
             UserDAO userDAO = new UserDAO();
             List<User> users = userDAO.getAllUsers();
+            userDAO.close();
             for (User user : users) {
         %>
         <tr>
